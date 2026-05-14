@@ -82,3 +82,30 @@ pet4.photo.attach(
   filename: "rocky.jpeg",
   content_type: "image/jpeg"
 )
+
+# Users
+User.destroy_all
+
+User.create!(
+  first_name: "Admin",
+  last_name: "User",
+  email: "admin@vetclinic.com",
+  password: "password123",
+  role: :admin
+)
+
+User.create!(
+  first_name: "Ana",
+  last_name: "Martinez",
+  email: "vet@vetclinic.com",
+  password: "password123",
+  role: :vet
+)
+
+User.create!(
+  first_name: "Juan",
+  last_name: "Perez",
+  email: "owner@vetclinic.com",
+  password: "password123",
+  role: :owner
+)

@@ -1,36 +1,21 @@
-````md
-# Lab 7 — VetClinic
+# VetClinic
 
-## Set
-```bash
-bundle install
-bin/rails db:setup
-bin/rails server
-````
-Then open [http://localhost:3000](http://localhost:3000).
+A veterinary clinic management application built with Ruby on Rails.
 
-## Dep
+## Authentication
 
-you need `libvips` installed.
+This application requires authentication. All resource pages (owners, pets, vets, appointments, treatments) require a signed-in user. The home page is public.
 
-Ubuntu/Debian:
+## Seeded Users
 
-```bash
-sudo apt install libvips
-```
+| Role  | Email                  | Password    |
+|-------|------------------------|-------------|
+| Admin | admin@vetclinic.com    | password123 |
+| Vet   | vet@vetclinic.com      | password123 |
+| Owner | owner@vetclinic.com    | password123 |
 
-Arch:
+## Notes
 
-```bash
-sudo pacman -S libvips
-```
-
-macOS (Homebrew):
-
-```bash
-brew install vips
-```
-
-## checks
-
-I add `<script>alert(1)</script>` inside of text treatment and no alerts were triggered.
+- Authentication is handled by Devise.
+- Role assignment is done through seeds or the Rails console only. Users cannot assign themselves a role through any form.
+- After sign-in and sign-out, a flash message confirms the outcome.
