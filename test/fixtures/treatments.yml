@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  appointment: one
+  name: Vaccine
+  medication: Rabies
+  dosage: 1 dose
+  notes: All good
+  administered_at: 2026-05-01 10:30:00
+
+two:
+  appointment: two
+  name: Pain Relief
+  medication: Ibuprofen
+  dosage: 50mg
+  notes: Monitor closely
+  administered_at: 2026-01-15 11:00:00
