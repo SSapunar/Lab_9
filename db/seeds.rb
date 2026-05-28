@@ -89,3 +89,11 @@ Treatment.create!(appointment: appt4, name: "Vaccine",     medication: "Rabies",
 Treatment.create!(appointment: appt1, name: "Pain Relief", medication: "Ibuprofen",  dosage: "50mg",     administered_at: Time.current, clinical_notes: "Ibuprofen administered. Follow-up in 48 hours.")
 Treatment.create!(appointment: appt2, name: "Surgery",     medication: "Anesthesia", dosage: "Standard", administered_at: Time.current, clinical_notes: "General anesthesia. Procedure completed without complications.")
 Treatment.create!(appointment: appt1, name: "Bandage",     medication: "None",       dosage: "-",        administered_at: Time.current, clinical_notes: "Clean bandage applied.")
+pet6 = owner1.pets.create!(name: "Rick", species: "dog", breed: "Mixed", date_of_birth: "2021-06-01", weight: 10)
+pet6.photo.attach(io: File.open(Rails.root.join("db/seeds/pets/rick.png")), filename: "rick.png", content_type: "image/png")
+
+pet7 = owner2.pets.create!(name: "Slime", species: "other", breed: "Unknown", date_of_birth: "2022-03-01", weight: 1)
+pet7.photo.attach(io: File.open(Rails.root.join("db/seeds/pets/slime.jpg")), filename: "slime.jpg", content_type: "image/jpeg")
+
+pet8 = owner3.pets.create!(name: "Tuntun", species: "cat", breed: "Mixed", date_of_birth: "2020-09-01", weight: 4)
+pet8.photo.attach(io: File.open(Rails.root.join("db/seeds/pets/tuntun.jpeg")), filename: "tuntun.jpeg", content_type: "image/jpeg")

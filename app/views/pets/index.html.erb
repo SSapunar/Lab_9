@@ -29,7 +29,7 @@
       <tr>
         <td>
           <% if pet.photo.attached? %>
-            <%= image_tag pet.photo.variant(resize_to_fill: [60, 60]), class: "rounded" %>
+            <%= image_tag pet.photo, class: "rounded", style: "width:60px;height:60px;object-fit:cover;" %>
           <% else %>
             <div style="width:60px;height:60px;background:#e9ecef;border-radius:4px;"></div>
           <% end %>

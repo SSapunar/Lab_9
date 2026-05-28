@@ -6,7 +6,7 @@ class OwnerPolicy < ApplicationPolicy
   def show?
     user.admin? || user.vet? || (user.owner? && record == user.owner)
   end
-  
+
   def create?
     user.admin?
   end
@@ -33,7 +33,7 @@ class OwnerPolicy < ApplicationPolicy
 
   class Scope < ApplicationPolicy::Scope
     def resolve
-      if user.admin?
+      if user.admin? || user.vet?
         scope.all
       elsif user.owner?
         scope.where(id: user.owner&.id)

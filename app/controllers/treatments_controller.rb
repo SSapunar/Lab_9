@@ -3,7 +3,7 @@ class TreatmentsController < ApplicationController
   before_action :set_treatment, only: [:edit, :update, :destroy]
 
   def new
-    @treatment = Treatment.new
+    @treatment = Treatment.new(appointment: @appointment)
     authorize @treatment
   end
 
