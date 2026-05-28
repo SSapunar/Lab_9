@@ -6,7 +6,9 @@ class Owner < ApplicationRecord
                     format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :phone, presence: true
   before_validation :normalize_email
+
   private
+
   def normalize_email
     self.email = email.strip.downcase if email.present?
   end

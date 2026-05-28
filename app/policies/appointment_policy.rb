@@ -5,12 +5,16 @@ class AppointmentPolicy < ApplicationPolicy
 
   def show?
     user.admin? ||
-      user.vet? && record.vet == user.vet ||
-      user.owner? && record.pet.owner == user.owner
+      (user.vet? && record.vet == user.vet) ||
+      (user.owner? && record.pet.owner == user.owner)
   end
 
   def create?
     user.admin? || user.vet? || user.owner?
+  end
+
+  def new?
+    create?
   end
 
   def edit?
@@ -19,14 +23,14 @@ class AppointmentPolicy < ApplicationPolicy
 
   def update?
     user.admin? ||
-      user.vet? && record.vet == user.vet ||
-      user.owner? && record.pet.owner == user.owner
+      (user.vet? && record.vet == user.vet) ||
+      (user.owner? && record.pet.owner == user.owner)
   end
 
   def destroy?
     user.admin? ||
-      user.vet? && record.vet == user.vet ||
-      user.owner? && record.pet.owner == user.owner
+      (user.vet? && record.vet == user.vet) ||
+      (user.owner? && record.pet.owner == user.owner)
   end
 
   def permitted_attributes

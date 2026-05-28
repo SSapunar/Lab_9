@@ -4,11 +4,15 @@ class PetPolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin? || user.vet? || user.owner? && record.owner == user.owner
+    user.admin? || user.vet? || (user.owner? && record.owner == user.owner)
   end
 
   def create?
     user.admin? || user.owner?
+  end
+
+  def new?
+    create?
   end
 
   def edit?
@@ -16,11 +20,11 @@ class PetPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin? || user.owner? && record.owner == user.owner
+    user.admin? || (user.owner? && record.owner == user.owner)
   end
 
   def destroy?
-    user.admin? || user.owner? && record.owner == user.owner
+    user.admin? || (user.owner? && record.owner == user.owner)
   end
 
   def permitted_attributes

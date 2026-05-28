@@ -7,16 +7,20 @@ class VetPolicy < ApplicationPolicy
     true
   end
 
+  def create?
+    user.admin?
+  end
+
+  def new?
+    create?
+  end
+
   def edit?
     update?
   end
 
   def update?
-    user.admin? || user.vet? && record == user.vet
-  end
-
-  def create?
-    user.admin?
+    user.admin? || (user.vet? && record == user.vet)
   end
 
   def destroy?

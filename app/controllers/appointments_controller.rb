@@ -2,19 +2,22 @@ class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
 
   def index
-    @appointments = Appointment.includes(:pet, :vet)
+    @appointments = policy_scope(Appointment).includes(:pet, :vet)
   end
 
   def show
+    authorize @appointment
     @appointment = Appointment.includes(treatments: :rich_text_clinical_notes).find(params[:id])
   end
 
   def new
     @appointment = Appointment.new
+    authorize @appointment
   end
 
   def create
     @appointment = Appointment.new(appointment_params)
+    authorize @appointment
     if @appointment.save
       redirect_to @appointment, notice: "Appointment created successfully."
     else
@@ -22,9 +25,12 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    authorize @appointment
+  end
 
   def update
+    authorize @appointment
     if @appointment.update(appointment_params)
       redirect_to @appointment, notice: "Appointment updated successfully."
     else
@@ -33,6 +39,7 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
+    authorize @appointment
     @appointment.destroy
     redirect_to appointments_path, notice: "Appointment deleted successfully."
   end
@@ -44,6 +51,6 @@ class AppointmentsController < ApplicationController
   end
 
   def appointment_params
-    params.require(:appointment).permit(:date, :reason, :status, :pet_id, :vet_id)
+    params.require(:appointment).permit(policy(@appointment || Appointment.new).permitted_attributes)
   end
 end
