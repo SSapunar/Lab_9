@@ -2,6 +2,7 @@ class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
 
   def index
+    authorize Appointment
     @appointments = policy_scope(Appointment).includes(:pet, :vet)
   end
 

@@ -72,7 +72,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_28_124929) do
     t.string "last_name"
     t.string "phone"
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_owners_on_user_id"
   end
 
@@ -122,7 +122,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_28_124929) do
     t.string "phone"
     t.string "specialization"
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_vets_on_user_id"
   end
 

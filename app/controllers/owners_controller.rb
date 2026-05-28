@@ -2,6 +2,7 @@ class OwnersController < ApplicationController
   before_action :set_owner, only: [:show, :edit, :update, :destroy]
 
   def index
+    authorize Owner
     @owners = policy_scope(Owner).includes(:pets)
   end
 

@@ -39,7 +39,7 @@ class AppointmentPolicy < ApplicationPolicy
     elsif user.vet?
       [:pet_id, :date, :reason, :status]
     else
-      [:pet_id, :date, :reason, :status]
+      [:date, :reason, :status]
     end
   end
 

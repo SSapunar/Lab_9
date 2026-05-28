@@ -1,12 +1,12 @@
 class OwnerPolicy < ApplicationPolicy
   def index?
-    user.admin? || user.owner?
+    user.admin? || user.vet? || user.owner?
   end
 
   def show?
-    user.admin? || (user.owner? && record == user.owner)
+    user.admin? || user.vet? || (user.owner? && record == user.owner)
   end
-
+  
   def create?
     user.admin?
   end

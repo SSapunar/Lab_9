@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   after_action :verify_authorized, unless: :devise_controller?
-  after_action :verify_policy_scoped, only: :index, unless: :devise_controller?
+  after_action :verify_policy_scoped, unless: :skip_policy_scoped_check?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -22,5 +22,11 @@ class ApplicationController < ActionController::Base
     added_attrs = [:first_name, :last_name]
     devise_parameter_sanitizer.permit(:sign_up, keys: added_attrs)
     devise_parameter_sanitizer.permit(:account_update, keys: added_attrs)
+  end
+
+  private
+
+  def skip_policy_scoped_check?
+    devise_controller? || action_name != "index"
   end
 end
